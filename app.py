@@ -5,6 +5,18 @@ import pandas as pd
 import traceback
 import sys
 
+# Compatibility shim: some pickles reference legacy module name `numpy._core`.
+# Ensure that `numpy._core` is available as an import alias for `numpy.core` so
+# unpickling works when pickles were created with numpy versions that used that
+# internal module path.
+try:
+    import importlib
+    if importlib.util.find_spec('numpy._core') is None:
+        sys.modules['numpy._core'] = importlib.import_module('numpy.core')
+except Exception:
+    # If this fails, unpickling may still fail — handled later with helpful errors
+    pass
+
 # Try to load pickles safely and show a helpful Streamlit message instead of crashing the app
 try:
     with open('pipe.pkl', 'rb') as f:
