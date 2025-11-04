@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtualenvs
+venv/
+.venv/
+ENV/
+env/
+
+# Jupyter
+.ipynb_checkpoints
+
+# macOS
+.DS_Store
+
+# Version files
+.python-version
+
+# Data / model pickles
+*.pkl
+
+# VSCode
+.vscode/
+
+# Logs
+*.log
